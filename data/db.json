@@ -1,0 +1,85 @@
+{
+  "users": [
+    {
+      "username": "jorge",
+      "id": "28c90485-b8d5-4e1b-bdb0-d15d635c6046",
+      "matricula": "1234-MED",
+      "carreras": {},
+      "password": "$2a$10$uZes6LR7Pgud8OabCrXblOIx9e3VUVBP/Nlw9CplelaE2YoGU5tiG"
+    },
+    {
+      "username": "daniel",
+      "id": "55b771a3-2926-4a3c-9313-7876d6003a98",
+      "matricula": "1235-MED",
+      "carreras": {},
+      "password": "$2a$10$2D30VRWTIYMuyzyGLlU/1ejk/mwdR2cYoQBQKNbd0kXXFzGnJ6obS"
+    },
+    {
+      "username": "samm",
+      "id": "cf6b2052-3d38-41ab-b95c-2cc24411762d",
+      "matricula": "7767-dhv",
+      "carreras": {},
+      "password": "$2a$10$KgtpPxFEgWTSin9VNkkK..9o8q9NAYbz.tcVAoGaHN1JEwQJ3m.my"
+    },
+    {
+      "username": "paco",
+      "id": "7150c52b-774d-4277-a82d-1f8639e20db0",
+      "matricula": "4456-MAD",
+      "carreras": {
+        "390e160c-e89c-4ed7-9ad5-5dc4ca09232c": {
+          "started": 1552327901724,
+          "route": [
+            {
+              "lat": 40.4103765,
+              "lon": -3.6936937,
+              "ts": 1552327901724
+            },
+            {
+              "lat": 40.4103765,
+              "lon": -3.6936937,
+              "ts": 1552327901744
+            },
+            {
+              "lat": 40.4103765,
+              "lon": -3.6936937,
+              "ts": 1552327901745
+            },
+            {
+              "lat": 40.4103765,
+              "lon": -3.6936937,
+              "ts": 1552327903747
+            }
+          ],
+          "finished": 1552327918001
+        },
+        "3122929f-f132-4385-ae42-80721c094659": {
+          "started": 1552337173672,
+          "route": [
+            {
+              "lat": 40.3971687,
+              "lon": -3.6613656000000003,
+              "ts": 1552337173672
+            },
+            {
+              "lat": 40.3971687,
+              "lon": -3.6613656000000003,
+              "ts": 1552337173685
+            },
+            {
+              "lat": 40.3971687,
+              "lon": -3.6613656000000003,
+              "ts": 1552337173722
+            },
+            {
+              "lat": 40.3971687,
+              "lon": -3.6613656000000003,
+              "ts": 1552337175722
+            }
+          ],
+          "finished": 1552337179463
+        }
+      },
+      "password": "$2a$10$LcpqXkmmC4ABanaQzeC8fOFPp4M.D3IlIPRqrCAtqc3o89G.14yJm"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+<h1>Conductor</h1>
+
+<button class="btn btn-success" type="button" name="start" id="start">Empieza trayecto</button>
+<button class="btn btn-danger" type="button" name="stop" id="stop">Acaba trayecto</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.js" charset="utf-8"></script>
+<script>
+  var btnStart = document.getElementById('start');
+  var btnStop = document.getElementById('stop');
+  btnStop.disabled = true;
+  var carreraId = null;
+  var wpid;
+
+  btnStart.addEventListener('click', function(e) {
+    if (carreraId === null) {
+      carreraId = uuid();
+      navigator.geolocation.getCurrentPosition(function(position){
+        post({
+          command: 'start',
+          ts : new Date().valueOf(),
+          carreraId: carreraId,
+          geo : {
+            lat : position.coords.latitude,
+            lon : position.coords.longitude
+          }
+        });
+      }, geo_error, geo_options);
+      btnStop.disabled = false;
+      btnStart.disabled = true;
+
+    }
+  });
+  btnStop.addEventListener('click', function(e) {
+    stopTracking(wpid);
+    if (carreraId !== null) {
+      navigator.geolocation.getCurrentPosition(function(position){
+        post({
+          command: 'stop',
+          ts : new Date().valueOf(),
+          carreraId: carreraId,
+          geo : {
+            lat : position.coords.latitude,
+            lon : position.coords.longitude
+          }
+        });
+        carreraId = null;
+      }, geo_error, geo_options);
+      btnStop.disabled = true;
+      btnStart.disabled = false;
+    }
+
+
+  });
+
+  function startTracking() {
+    wpid = navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
+    console.log("Started tracking");
+  }
+
+  function stopTracking(id) {
+    navigator.geolocation.clearWatch(id);
+  }
+
+  function post(data) {
+    fetch(`${window.location.href}driver/newrun`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => data.command === "start" ? startTracking() : console.log('Done'));
+
+  }
+  function geo_success(position) {
+    if(carreraId !== null) {
+      post({
+        command: 'track',
+        geo : { lat: position.coords.latitude, lon : position.coords.longitude},
+        ts : new Date().valueOf(),
+        carreraId : carreraId
+      });
+    }
+  }
+
+  function geo_error() {
+    alert("Sorry, no position available.");
+  }
+
+  var geo_options = {
+    enableHighAccuracy: true,
+    maximumAge        : 5000,
+    timeout           : 27000
+  };
+
+</script>
