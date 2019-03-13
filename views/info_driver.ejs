@@ -1,0 +1,8 @@
+<h1 class="">¡Hola! soy <%= name %></h1>
+<h1 class="">y mi matrícula es : <%= matricula %></h1>
+<button class="fs-continue fs-show" type="button" name="start" id="valora">¿Me ayudas a mejorar?</button>
+<script type="text/javascript">
+  document.getElementById('valora').addEventListener('click', function(e){
+    window.location.href = `${window.location.href}valora`;
+  });
+</script>

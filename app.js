@@ -19,6 +19,7 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 
+
 // bodyParser reads a form's input and stores it in request.body
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(bodyParser.json()); // support json encoded bodies
@@ -50,6 +51,9 @@ app.use(passport.session());
 
 // initialize flash; flash must be after cookieParser and session
 app.use(flash());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // global variables that are available to the views
 app.use(function(req, res, next) {

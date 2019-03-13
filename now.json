@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "name": "taxi-experimenta",
+    "builds": [
+        { "src": "data/*", "use": "@now/static" },
+        { "src": "app.js", "use": "@now/node" }
+    ],
+    "routes" : [
+      { "src": "/(.*)", "dest": "app.js" }
+    ],
+    "build" : {
+      "env" : {
+        "SESSION_SECRET" : "secret",
+        "NODE_ENV" : "production",
+        "PORT" : "80"
+      }
+    }
+}

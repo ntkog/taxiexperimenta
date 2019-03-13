@@ -62,7 +62,7 @@
   }
 
   function post(data) {
-    fetch(`${window.location.href}driver/newrun`, {
+    fetch(`${window.location.origin}/driver/newrun`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{

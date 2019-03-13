@@ -1,2 +1,59 @@
-<h3>¡Hola! soy <%= name %></h3>
-<h3>y mi matrícula es : <%= matricula %></h3>
+
+
+<div class="container">
+
+	<div class="fs-form-wrap" id="fs-form-wrap">
+		<div class="fs-title">
+			<h1>El taxi experimenta</h1>
+		</div>
+		<form id="myform" class="fs-form fs-form-full" autocomplete="off">
+			<ol class="fs-fields">
+				<li data-input-trigger data-question="1">
+					<label class="fs-field-label fs-anim-upper" for="q1">¿Eres usuario habitual de taxi?</label>
+					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+						<span><input id="q1a" name="q1" type="radio" value="true"/><label for="q1a" class="radio-conversion">Sí</label></span>
+						<span><input id="q1b" name="q1" type="radio" value="false"/><label for="q1b" class="radio-social">No</label></span>
+					</div>
+				</li>
+				<li data-input-trigger data-question="2">
+					<label class="fs-field-label fs-anim-upper" for="q3" data-info="This will help us know what kind of service you need">¿Qué te ha gustado?</label>
+					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+						<span><input id="q2a" name="q2" type="checkbox" value="limpieza"/><label for="q2a" class="radio-conversion">Limpieza</label></span>
+						<span><input id="q2b" name="q2" type="checkbox" value="trato"/><label for="q2b" class="radio-social">Trato del Conductor</label></span>
+						<span><input id="q2c" name="q2" type="checkbox" value="seguridad"/><label for="q2c" class="radio-mobile">Seguridad</label></span>
+						<span><input id="q2d" name="q2" type="checkbox" value="informacion"/><label for="q2d" class="radio-mobile">Información</label></span>
+					</div>
+				</li>
+
+			</ol><!-- /fs-fields -->
+			<button class="fs-submit" type="submit">Send answers</button>
+		</form><!-- /fs-form -->
+	</div><!-- /fs-form-wrap -->
+
+
+</div><!-- /container -->
+<script src="<%= origin %>/js/classie.js"></script>
+<script src="<%= origin %>/js/selectFx.js"></script>
+<script src="<%= origin %>/js/fullscreenForm.js"></script>
+<script>
+	var myform = (function() {
+		var formWrap = document.getElementById( 'fs-form-wrap' );
+
+		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+			new SelectFx( el, {
+				stickyPlaceholder: false,
+				onChange: function(val){
+					document.querySelector('span.cs-placeholder').style.backgroundColor = val;
+				}
+			});
+		} );
+
+		let form = new FForm( formWrap, {
+			ctrlNavDots : false,
+			onReview : function() {
+				classie.add( document.body, 'overview' ); // for demo purposes only
+			}
+		} );
+		return form;
+	})();
+</script>

@@ -28,13 +28,20 @@ const db = low(adapter);
 
 // display home page
 router.get('/', function(req, res) {
-  res.render('home')
+  res.render('home', { origin : `http://${req.headers.host}` })
+})
+
+
+router.get('/qrcode/:driverId/valora', function(req, res) {
+  var info = db.get('users').find({ id: req.params.driverId }).value();
+  res.render('formulario', { origin : `https://${req.headers.host}` });
 })
 
 router.get('/qrcode/:driverId', function(req, res) {
-  var info = db.get('users').find({ id: req.params.driverId }).value();
-  res.render('formulario', { name : capitalize(info.username) , matricula: info.matricula });
+  //var info = db.get('users').find({ id: req.params.driverId }).value();
+  res.render('info_driver', { origin : req.headers.host ,name : capitalize(req.user.username) , matricula: req.user.matricula });
 })
+
 
 router.get('/transito', isLoggedIn(), function(req, res) {
   res.render('transito');

@@ -71,7 +71,7 @@ exports.configurePassport = function(passport) {
       done({ message: 'Invalid credentials.' }, null);
     } else {
       // the object is what will be available for 'request.user'
-      done(null, {id: user.id, username: user.username})
+      done(null, {id: user.id, username: user.username, matricula: user.matricula})
     }
   });
 
