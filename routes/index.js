@@ -170,7 +170,7 @@ router.post(
   passport.authenticate(
     'local',
     {
-      successRedirect:'/',
+      successRedirect:'/profile',
       failureRedirect:'/login',
       failureFlash: true,
       successFlash: 'You are logged in',
@@ -189,7 +189,7 @@ router.get('/logout', function(req, res) {
 router.get('/profile', isLoggedIn(), function(req, res) {
   var dbUser =  db.get('users').find({ id: req.user.id }).value();
 
-  QRCode.toDataURL(`${req.headers.host}/qrcode/${req.user.id}`, function (err, url) {
+  QRCode.toDataURL(`${BASE_URL}/qrcode/${req.user.id}/valora`, function (err, url) {
     res.render('profile', { dbUser:  dbUser, qrcodeUrl : url });
   })
 
