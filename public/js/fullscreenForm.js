@@ -155,10 +155,10 @@
     return `<li data-input-trigger data-question="${qNumber}">
     					<label class="fs-field-label fs-anim-upper" for="q3" data-info="">${text}</label>
     					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-    						<span><input id="q${qNumber}a" name="q${qNumber}" type="checkbox" value="limpieza"/><label for="q${qNumber}a" class="radio-social">Muy bien</label></span>
-    						<span><input id="q${qNumber}b" name="q${qNumber}" type="checkbox" value="trato"/><label for="q${qNumber}b" class="radio-social">Bien</label></span>
-    						<span><input id="q${qNumber}c" name="q${qNumber}" type="checkbox" value="seguridad"/><label for="q${qNumber}c" class="radio-social">Mejorable</label></span>
-    						<span><input id="q${qNumber}d" name="q${qNumber}" type="checkbox" value="transparencia"/><label for="q${qNumber}d" class="radio-social">Muy Malo</label></span>
+    						<span><input id="q${qNumber}a" name="q${qNumber}" type="checkbox" value="limpieza"/><label for="q${qNumber}a" class="radio-happy">Muy bien</label></span>
+    						<span><input id="q${qNumber}b" name="q${qNumber}" type="checkbox" value="trato"/><label for="q${qNumber}b" class="radio-shocked">Bien</label></span>
+    						<span><input id="q${qNumber}c" name="q${qNumber}" type="checkbox" value="seguridad"/><label for="q${qNumber}c" class="radio-sad">Mejorable</label></span>
+    						<span><input id="q${qNumber}d" name="q${qNumber}" type="checkbox" value="transparencia"/><label for="q${qNumber}d" class="radio-angry">Muy Malo</label></span>
     					</div>
     				</li>`;
   }

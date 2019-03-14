@@ -368,6 +368,21 @@ button.fs-continue,
 	background-image: url(../img/care.svg);
 }
 
+.fs-fields .fs-radio-custom label.radio-happy::after {
+	background-image: url(../img/happy.svg);
+}
+.fs-fields .fs-radio-custom label.radio-shocked::after {
+	background-image: url(../img/shocked.svg);
+}
+.fs-fields .fs-radio-custom label.radio-sad::after {
+	background-image: url(../img/sad.svg);
+}
+.fs-fields .fs-radio-custom label.radio-angry::after {
+	background-image: url(../img/angry.svg);
+}
+
+
+
 .fs-fields .fs-radio-custom label:hover::after,
 .fs-fields input[type="radio"]:focus + label::after,
 .fs-fields input[type="radio"]:checked + label::after {
