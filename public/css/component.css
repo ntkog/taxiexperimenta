@@ -3,7 +3,7 @@
 	position: relative;
 	width: 100%;
 	height: 100%;
-	color: #fff;
+	color: #695353;
 }
 
 .overview .fs-form-wrap {
@@ -96,7 +96,7 @@
 
 /* Visibility control of elements */
 .fs-form-full .fs-fields > li,
-.fs-nav-dots, 
+.fs-nav-dots,
 .fs-progress,
 .fs-numbers,
 button.fs-continue,
@@ -183,6 +183,7 @@ button.fs-continue,
 	pointer-events: none;
 }
 
+/*
 .fs-form-full .fs-fields > li label[data-info]::after {
 	position: relative;
 	display: inline-block;
@@ -197,12 +198,13 @@ button.fs-continue,
 	text-align: center;
 	font-weight: 700;
 	font-style: italic;
-	font-size: 14px;
+	font-size: 1rem;
 	font-family: Georgia, serif;
 	line-height: 20px;
 	cursor: pointer;
 	pointer-events: auto;
 }
+*/
 
 .fs-form-full .fs-fields > li label[data-info]::before {
     position: absolute;
@@ -261,7 +263,7 @@ button.fs-continue,
 }
 
 .fs-fields [required] {
-	background-image: url(../img/abacusstar.svg);
+	background-image: url(../img/icons8-checkmark.svg);
 	background-position: top right;
 	background-size: 18px;
 	background-repeat: no-repeat;
@@ -295,7 +297,7 @@ button.fs-continue,
 	position: relative;
 	margin-right: 3%;
 	padding: 10px;
-	max-width: 200px;
+	max-width: 20vw;
 	width: 30%;
 	text-align: center;
 	font-weight: 700;
@@ -342,16 +344,28 @@ button.fs-continue,
 	transform: translate(-50%,-50%);
 }
 
-.fs-fields .fs-radio-custom label.radio-mobile::after {
-	background-image: url(../img/mobile.svg);
+.fs-fields .fs-radio-custom label.radio-yes::after {
+	background-image: url(../img/icons8-checkmark.svg);
+}
+.fs-fields .fs-radio-custom label.radio-broom::after {
+	background-image: url(../img/broom.svg);
+}
+
+.fs-fields .fs-radio-custom label.radio-no::after {
+	background-image: url(../img/icons8-delete.svg);
 }
 
 .fs-fields .fs-radio-custom label.radio-social::after {
 	background-image: url(../img/social.svg);
 }
-
-.fs-fields .fs-radio-custom label.radio-conversion::after {
-	background-image: url(../img/conversion.svg);
+.fs-fields .fs-radio-custom label.radio-secure::after {
+	background-image: url(../img/padlock.svg);
+}
+.fs-fields .fs-radio-custom label.radio-information::after {
+	background-image: url(../img/conversation.svg);
+}
+.fs-fields .fs-radio-custom label.radio-trato::after {
+	background-image: url(../img/care.svg);
 }
 
 .fs-fields .fs-radio-custom label:hover::after,
@@ -371,7 +385,7 @@ button.fs-continue,
 .fs-fields textarea {
 	padding: 0.25em;
 	width: 100%;
-	height: 200px;
+	height: 20vh;
 	border: 2px solid rgba(0,0,0,0.2);
 	background-color: transparent;
 	color: #fffed8;
@@ -416,14 +430,14 @@ button.fs-continue,
 
 .fs-fields input.fs-mark {
 	padding-left: 1em;
-	background-image: url(../img/dollar.svg);
+	background-image: url(../img/icons8-checkmark.svg);
 	background-position: 0% 0.15em;
 	background-size: auto 75%;
 	background-repeat: no-repeat;
 }
 
 .fs-fields input.fs-mark[required] {
-	background-image: url(../img/dollar.svg), url(../img/abacusstar.svg);
+	background-image: url(../img/icons8-checkmark.svg), url(../img/icons8-checkmark.svg);
 	background-position: 0% 0.15em, top right;
 	background-size: auto 75%, 18px;
 	background-repeat: no-repeat;
@@ -801,7 +815,7 @@ input[type=text]::-ms-clear {
 /* Adjust form for smaller screens */
 @media screen and (max-width: 52.5em) {
 	body {
-		min-height: 500px;
+		min-height: 0vh;
 	}
 
 	.fs-form-wrap {
@@ -809,10 +823,10 @@ input[type=text]::-ms-clear {
 	}
 
 	.fs-form {
-		top: 6em;
-		right: 2em;
+		/* top: 6em; */
+		/* right: 2em; */
 		left: 0;
-		padding: 0 3.75em 0 1em;
+		padding: 0 2em 0 2em;
 		width: auto;
 		font-size: 2em;
 	}

@@ -128,8 +128,8 @@
       "endQuestions"  : `<li data-input-trigger data-question="3">
        					<label class="fs-field-label fs-anim-upper" data-info="We'll make sure to use it all over">¿Recibió ticket?</label>
        					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-       						<span><input id="q3a" name="q3" type="radio" value="limpieza"/><label for="q3a" class="radio-conversion">Sí</label></span>
-       						<span><input id="q3b" name="q3" type="radio" value="trato"/><label for="q3b" class="radio-social">No</label></span>
+       						<span><input id="q3a" name="q3" type="radio" value="ticket_yes"/><label for="q3a" class="radio-yes">Sí</label></span>
+       						<span><input id="q3b" name="q3" type="radio" value="ticket_no"/><label for="q3b" class="radio-no">No</label></span>
        					</div>
        				</li>
               <li data-input-trigger data-question="4">
@@ -155,10 +155,10 @@
     return `<li data-input-trigger data-question="${qNumber}">
     					<label class="fs-field-label fs-anim-upper" for="q3" data-info="">${text}</label>
     					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-    						<span><input id="q${qNumber}a" name="q${qNumber}" type="checkbox" value="limpieza"/><label for="q${qNumber}a" class="radio-conversion">Muy bien</label></span>
+    						<span><input id="q${qNumber}a" name="q${qNumber}" type="checkbox" value="limpieza"/><label for="q${qNumber}a" class="radio-social">Muy bien</label></span>
     						<span><input id="q${qNumber}b" name="q${qNumber}" type="checkbox" value="trato"/><label for="q${qNumber}b" class="radio-social">Bien</label></span>
-    						<span><input id="q${qNumber}c" name="q${qNumber}" type="checkbox" value="seguridad"/><label for="q${qNumber}c" class="radio-mobile">Mejorable</label></span>
-    						<span><input id="q${qNumber}d" name="q${qNumber}" type="checkbox" value="transparencia"/><label for="q${qNumber}d" class="radio-mobile">Muy Malo</label></span>
+    						<span><input id="q${qNumber}c" name="q${qNumber}" type="checkbox" value="seguridad"/><label for="q${qNumber}c" class="radio-social">Mejorable</label></span>
+    						<span><input id="q${qNumber}d" name="q${qNumber}" type="checkbox" value="transparencia"/><label for="q${qNumber}d" class="radio-social">Muy Malo</label></span>
     					</div>
     				</li>`;
   }

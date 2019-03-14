@@ -19,10 +19,10 @@ html, body, .container {
 }
 
 body {
-	background: #3b3f45;
-	color: #fff;
+	background: #ffffff;
+	color: #000;
 	font-weight: 400;
-	font-size: 1em;
+	font-size: 1rem;
 	font-family: 'Raleway', Arial, sans-serif;
 	overflow: hidden;
 	overflow-y: scroll;
@@ -132,4 +132,7 @@ a:hover, a:focus {
 	padding: 0.5em 0 0.3em;
 	max-width: 300px;
 	text-align: left;
+}
+input[type="checkbox"], input[type="radio"] {
+	visibility: hidden;
 }
