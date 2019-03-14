@@ -390,7 +390,7 @@ button.fs-continue,
 }
 
 .fs-fields .fs-radio-custom input[type="radio"]:checked + label {
-	color: #fffed8;
+	/* color: #fffed8; */
 }
 
 .fs-form-overview .fs-fields .fs-radio-custom input[type="radio"]:checked + label {
@@ -403,7 +403,7 @@ button.fs-continue,
 	height: 20vh;
 	border: 2px solid rgba(0,0,0,0.2);
 	background-color: transparent;
-	color: #fffed8;
+	color: #000;
 	font-weight: 700;
 	font-size: 0.85em;
 	resize: none;

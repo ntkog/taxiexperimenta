@@ -95,46 +95,46 @@
 
     let textos = {
       "limpieza" : [
-        "Limpieza del coche",
-        "Aspecto del conductor",
-        "Estado del vehículo",
-        "Ambiente (olores,volumen de la radio,climatización...)"
+        { text: "Limpieza del coche", type: "emotion" },
+        { text: "Aspecto del conductor", type: "emotion" },
+        { text: "Estado del vehículo", type: "emotion" },
+        { text: "Ambiente (olores,volumen de la radio,climatización...)", type: "emotion" }
       ],
       "trato" : [
-        "Predisposición para ayudar por parte del taxista",
-        "¿Su taxista le transmite confianza?",
-        "¿Ha sido amable?",
-        "Conversación"
+        { text: "Predisposición para ayudar por parte del taxista",type: "emotion" },
+        { text: "¿Su taxista le transmite confianza?",type: "yesno" },
+        { text: "¿Ha sido amable?",type: "yesno" },
+        { text: "Conversación", type: "emotion" }
       ],
       "seguridad" : [
-        "¿La conducción ha sido brusca?",
-        "¿Ha notado ud. exceso de velocidad en el trayecto?",
-        "¿Ha respetado su taxista las normas de tráfico?",
-        "Atención por los ciclistas/peatones"
+        { text: "¿La conducción ha sido adecuada?", type: "yesno"},
+        { text: "¿Ha notado ud. exceso de velocidad en el trayecto?",type: "yesno"},
+        { text: "¿Ha respetado su taxista las normas de tráfico?",type: "yesno"},
+        { text: "Atención por los ciclistas/peatones", type: "yesno"}
       ],
       "informacion" : [
-        "¿Considera que la ruta ha sido adecuada?",
-        "¿Conoce ud. las tarifas del servicio?",
-        "¿Conoce ud. sus derechos como cliente?",
-        "¿Ha recibido ud. la información de forma transparente?"
+        { text: "¿Considera que la ruta ha sido la adecuada?",type: "emotion"},
+        { text: "¿Conoce ud. las tarifas del servicio?",type: "yesno"},
+        { text: "¿Conoce ud. sus derechos como cliente?",type: "yesno"},
+        { text: "¿Ha recibido ud. la información de forma transparente?",type: "emotion"}
       ]
     }
 
     this.questions = {
-      "limpieza"      : textos.limpieza.map((text, i) => this._question2html(text, i + 3)),
-      "trato"         : textos.trato.map((text, i) => this._question2html(text, i + 3)),
-      "seguridad"     : textos.seguridad.map((text, i) => this._question2html(text, i + 3)),
-      "informacion" : textos["informacion"].map((text, i) => this._question2html(text, i + 3)),
-      "endQuestions"  : `<li data-input-trigger data-question="3">
+      "limpieza"      : textos.limpieza.map((obj, i) => this._question2html(obj.text, i + 3, obj.type)),
+      "trato"         : textos.trato.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "seguridad"     : textos.seguridad.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "informacion" : textos["informacion"].map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "endQuestions"  : `<li data-input-trigger data-question="7">
        					<label class="fs-field-label fs-anim-upper" data-info="We'll make sure to use it all over">¿Recibió ticket?</label>
        					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-       						<span><input id="q3a" name="q3" type="radio" value="ticket_yes"/><label for="q3a" class="radio-yes">Sí</label></span>
-       						<span><input id="q3b" name="q3" type="radio" value="ticket_no"/><label for="q3b" class="radio-no">No</label></span>
+       						<span><input id="q7a" name="q7" type="radio" value="ticket_yes" required/><label for="q7a" class="radio-yes">Sí</label></span>
+       						<span><input id="q7b" name="q7" type="radio" value="ticket_no" required/><label for="q7b" class="radio-no">No</label></span>
        					</div>
        				</li>
-              <li data-input-trigger data-question="4">
-                <label class="fs-field-label fs-anim-upper" for="q4">Si quiere dejar algún comentario, puede hacerlo aquí:</label>
-                <textarea class="fs-anim-lower" id="q4" name="q4" placeholder="Describe here"></textarea>
+              <li data-input-trigger data-question="8">
+                <label class="fs-field-label fs-anim-upper" for="q8">Si quiere dejar algún comentario, puede hacerlo aquí:</label>
+                <textarea class="fs-anim-lower" id="q8" name="q8" placeholder="Describe here"></textarea>
               </li>`
     };
 
@@ -151,14 +151,19 @@
 		this._initEvents();
 	};
 
-  FForm.prototype._question2html = function(text, qNumber) {
+  FForm.prototype._question2html = function(text, qNumber,questionType) {
+    let yesno_template = `<span><input id="q${qNumber}a" name="q${qNumber}" type="radio" value="limpieza" required/><label for="q${qNumber}a" class="radio-yes">Sí</label></span>
+      <span><input id="q${qNumber}b" name="q${qNumber}" type="radio" value="trato" required/><label for="q${qNumber}b" class="radio-no">No</label></span>`;
+
+    let emotion_template = `<span><input id="q${qNumber}a" name="q${qNumber}" type="radio" value="limpieza" required/><label for="q${qNumber}a" class="radio-happy">Muy bien</label></span>
+    <span><input id="q${qNumber}b" name="q${qNumber}" type="radio" value="trato" required/><label for="q${qNumber}b" class="radio-shocked">Bien</label></span>
+    <span><input id="q${qNumber}c" name="q${qNumber}" type="radio" value="seguridad" required/><label for="q${qNumber}c" class="radio-sad">Mejorable</label></span>
+    <span><input id="q${qNumber}d" name="q${qNumber}" type="radio" value="transparencia" required/><label for="q${qNumber}d" class="radio-angry">Muy Mal</label></span>`;
+
     return `<li data-input-trigger data-question="${qNumber}">
     					<label class="fs-field-label fs-anim-upper" for="q3" data-info="">${text}</label>
     					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-    						<span><input id="q${qNumber}a" name="q${qNumber}" type="checkbox" value="limpieza"/><label for="q${qNumber}a" class="radio-happy">Muy bien</label></span>
-    						<span><input id="q${qNumber}b" name="q${qNumber}" type="checkbox" value="trato"/><label for="q${qNumber}b" class="radio-shocked">Bien</label></span>
-    						<span><input id="q${qNumber}c" name="q${qNumber}" type="checkbox" value="seguridad"/><label for="q${qNumber}c" class="radio-sad">Mejorable</label></span>
-    						<span><input id="q${qNumber}d" name="q${qNumber}" type="checkbox" value="transparencia"/><label for="q${qNumber}d" class="radio-angry">Muy Malo</label></span>
+    						${questionType === "yesno" ? `${yesno_template}` : `${emotion_template}` }
     					</div>
     				</li>`;
   }
@@ -225,6 +230,7 @@
 
 		// total fields
 		this.fieldsCount = this.fields.length;
+    this._initEvents();
   }
 
   FForm.prototype._updateForm = function (sel) {
@@ -340,7 +346,7 @@
 	 */
 	FForm.prototype._nextField = function( backto ) {
 		//if( this.isLastStep || !this._validade() || this.isAnimating ) {
-    if( this.isLastStep ||  this.isAnimating ) {
+    if( this.isLastStep ||  !this._validade() || this.isAnimating ) {
 			return false;
 		}
 		this.isAnimating = true;
@@ -565,12 +571,8 @@
 		var message = '';
 		switch( err ) {
 			case 'NOVAL' :
-				message = 'Please fill the field before continuing';
+				message = 'Por favor, escoge una opción';
 				break;
-			case 'INVALIDEMAIL' :
-				message = 'Please fill a valid email address';
-				break;
-			// ...
 		};
 		this.msgError.innerHTML = message;
 		this._showCtrl( this.msgError );
