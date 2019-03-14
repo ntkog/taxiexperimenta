@@ -12,7 +12,6 @@ const store = require('connect-nedb-session')(session);
 const flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 
-
 var app = express();
 
 // view engine setup

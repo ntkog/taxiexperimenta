@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-	<%- include('header', { origin : "http://localhost:3000" }); %>
+	<%- include('header', { origin : process.env["BASE_URL"] }); %>
 	<%- body %>
-	<%- include('footer', { origin : "http://localhost:3000" }); %>
+	<%- include('footer', { origin : process.env["BASE_URL"] }); %>
 </html>

@@ -6,6 +6,7 @@ var uuid = require('uuid');
 var authService = require('../services/authService');
 var passport = require('passport');
 var QRCode = require('qrcode');
+const BASE_URL = process.env["BASE_URL"] || "https://valora.me";
 authService.configurePassport(passport)
 
 
@@ -28,18 +29,19 @@ const db = low(adapter);
 
 // display home page
 router.get('/', function(req, res) {
-  res.render('home', { origin : `http://${req.headers.host}` })
+  res.render('home', { origin : BASE_URL })
 })
 
 
 router.get('/qrcode/:driverId/valora', function(req, res) {
   var info = db.get('users').find({ id: req.params.driverId }).value();
-  res.render('formulario', { origin : `https://${req.headers.host}` });
+  res.render('formulario', { origin : BASE_URL });
 })
 
-router.get('/qrcode/:driverId', function(req, res) {
+
+router.get('/qrcode/:driverId', isLoggedIn(), function(req, res) {
   //var info = db.get('users').find({ id: req.params.driverId }).value();
-  res.render('info_driver', { origin : req.headers.host ,name : capitalize(req.user.username) , matricula: req.user.matricula });
+  res.render('info_driver', { origin : BASE_URL ,name : capitalize(req.user.username) , matricula: req.user.matricula });
 })
 
 
