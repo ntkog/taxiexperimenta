@@ -93,7 +93,7 @@
 		// total fields
 		this.fieldsCount = this.fields.length;
 
-    let textos = {
+    this.textos = {
       "limpieza" : [
         { text: "Limpieza del coche", type: "emotion" },
         { text: "Aspecto del conductor", type: "emotion" },
@@ -121,10 +121,10 @@
     }
 
     this.questions = {
-      "limpieza"      : textos.limpieza.map((obj, i) => this._question2html(obj.text, i + 3, obj.type)),
-      "trato"         : textos.trato.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
-      "seguridad"     : textos.seguridad.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
-      "informacion" : textos["informacion"].map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "limpieza"      : this.textos.limpieza.map((obj, i) => this._question2html(obj.text, i + 3, obj.type)),
+      "trato"         : this.textos.trato.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "seguridad"     : this.textos.seguridad.map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
+      "informacion" : this.textos["informacion"].map((obj, i) => this._question2html(obj.text, i + 3,obj.type)),
       "endQuestions"  : `<li data-input-trigger data-question="7">
        					<label class="fs-field-label fs-anim-upper" data-info="We'll make sure to use it all over">¿Recibió ticket?</label>
        					<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
@@ -155,10 +155,10 @@
     let yesno_template = `<span><input id="q${qNumber}a" name="q${qNumber}" type="radio" value="limpieza" required/><label for="q${qNumber}a" class="radio-yes">Sí</label></span>
       <span><input id="q${qNumber}b" name="q${qNumber}" type="radio" value="trato" required/><label for="q${qNumber}b" class="radio-no">No</label></span>`;
 
-    let emotion_template = `<span><input id="q${qNumber}a" name="q${qNumber}" type="radio" value="limpieza" required/><label for="q${qNumber}a" class="radio-happy">Muy bien</label></span>
-    <span><input id="q${qNumber}b" name="q${qNumber}" type="radio" value="trato" required/><label for="q${qNumber}b" class="radio-shocked">Bien</label></span>
-    <span><input id="q${qNumber}c" name="q${qNumber}" type="radio" value="seguridad" required/><label for="q${qNumber}c" class="radio-sad">Mejorable</label></span>
-    <span><input id="q${qNumber}d" name="q${qNumber}" type="radio" value="transparencia" required/><label for="q${qNumber}d" class="radio-angry">Muy Mal</label></span>`;
+    let emotion_template = `<span><input id="q${qNumber}a" name="q${qNumber}" type="radio" value="limpieza" required /><label for="q${qNumber}a" class="radio-happy">Muy bien</label></span>
+    <span><input id="q${qNumber}b" name="q${qNumber}" type="radio" value="trato" required /><label for="q${qNumber}b" class="radio-shocked">Bien</label></span>
+    <span><input id="q${qNumber}c" name="q${qNumber}" type="radio" value="seguridad" required /><label for="q${qNumber}c" class="radio-sad">Mejorable</label></span>
+    <span><input id="q${qNumber}d" name="q${qNumber}" type="radio" value="transparencia" required /><label for="q${qNumber}d" class="radio-angry">Muy Mal</label></span>`;
 
     return `<li data-input-trigger data-question="${qNumber}">
     					<label class="fs-field-label fs-anim-upper" for="q3" data-info="">${text}</label>
@@ -238,15 +238,15 @@
     var self = this;
     switch(`${sel.unanswered.length}`) {
       case "1" :
-          sel.unanswered.map(q => questionsToLoad.push(self.questions[q].join("")));
+          sel.unanswered.map(q => questionsToLoad.push(this.textos[q].map((obj, i) => this._question2html(obj.text, i + 3, obj.type)).join("")));
           break;
       case "2" :
-          sel.unanswered.map(q => questionsToLoad.push(self.questions[q].slice(0,2).join("")));
+          sel.unanswered.map(q => questionsToLoad.push(this.textos[q].map((obj, i) => this._question2html(obj.text, i < 2 ? i + 3 : i + 5, obj.type)).slice(0,2).join("")));
           break;
       case "3" :
           sel.unanswered.map(q => q === "limpieza"
-            ? questionsToLoad.push(self.questions[q].slice(0,2).join(""))
-            : questionsToLoad.push(self.questions[q][0]));
+            ? questionsToLoad.push(this.textos[q].map((obj, i) => this._question2html(obj.text, i + 3, obj.type)).slice(0,2).join(""))
+            : questionsToLoad.push(this.textos[q].map((obj, i) => this._question2html(obj.text, i + 3, obj.type))[0]));
           break;
     };
 
